@@ -5,9 +5,16 @@ import { LinkText, MobileView, DesktopView, Slider } from '../Common/Styled'
 import MenuButton from './MenuButton'
 import LogoSrc from '../../assets/logo.svg'
 
-const Toolbar = ({ activeSection = {}, activeImageIndex, onShowAbout, onShowStore, onChangeTimeline }) => (
+const Toolbar = ({
+  activeSection = {},
+  activeImageIndex,
+  onShowOnboarding,
+  onShowAbout,
+  onChangeTimeline,
+  showOnboardingTwo,
+}) => (
   <Wrapper>
-    <LinksArea withMargin>
+    <LinksArea style={{ zIndex: `${showOnboardingTwo ? 99999 : 0}` }}>
       <Logo src={LogoSrc} alt="Paint.garden" />
       {activeSection.id && (
         <LinkText bold flexBasis="50%">
@@ -23,16 +30,21 @@ const Toolbar = ({ activeSection = {}, activeImageIndex, onShowAbout, onShowStor
         />
       )}
     </LinksArea>
+
     <DesktopView>
       <LinksArea>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText onClick={onShowStore}>Store</LinkText>
+        <LinkText onClick={onShowOnboarding}>Demo</LinkText>
+        <LinkText>Sign Up</LinkText>
+        <LinkText>Login</LinkText>
       </LinksArea>
     </DesktopView>
     <MobileView>
       <MenuButton>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText onClick={onShowStore}>Store</LinkText>
+        <LinkText onClick={onShowOnboarding}>Demo</LinkText>
+        <LinkText>Sign Up</LinkText>
+        <LinkText>Login</LinkText>
       </MenuButton>
     </MobileView>
   </Wrapper>
@@ -41,9 +53,10 @@ const Toolbar = ({ activeSection = {}, activeImageIndex, onShowAbout, onShowStor
 Toolbar.propTypes = {
   activeSection: PropTypes.object.isRequired,
   activeImageIndex: PropTypes.number,
+  onShowOnboarding: PropTypes.func,
   onShowAbout: PropTypes.func,
-  onShowStore: PropTypes.func,
   onChangeTimeline: PropTypes.func,
+  showOnboardingTwo: PropTypes.bool,
 }
 
 export default Toolbar

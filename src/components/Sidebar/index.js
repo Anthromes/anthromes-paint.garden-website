@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Wrapper, Text, Image, Heading, TextZone, CloseZone, CartZone, Medium, TopZone, NoImage } from './Styled'
-// import api from '../../utils/api'
+import { Wrapper, Text, Image, Heading, TextZone, CloseZone, CartZone, Medium, TopZone } from './Styled'
+import api from '../../utils/api'
 import close from '../../assets/close.svg'
 import cart from '../../assets/shopping-cart.svg'
 
-const Sidebar = ({ pin, onClose }) => (
-  <Wrapper>
+const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
+  <Wrapper style={{zIndex: `${zIndex}`}}>
     {pin.imageUrl ? (
-      <Image src={pin.imageUrl} alt={pin.headline} />
+      <Image src={api.getImageUrl(pin.imageUrl) || { imgSrc }} alt={pin.headline} />
     ) : (
-      <NoImage>No image provided</NoImage>
+      <Image src={imgSrc} alt={pin.headline} />
     )}
     <CloseZone onClick={onClose}>
       <img src={close} alt={'Close'} />
@@ -33,6 +33,7 @@ const Sidebar = ({ pin, onClose }) => (
 Sidebar.propTypes = {
   pin: PropTypes.object,
   onClose: PropTypes.func,
+  imgSrc: PropTypes.string,
 }
 
 export default Sidebar

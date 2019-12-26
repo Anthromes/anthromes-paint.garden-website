@@ -1,26 +1,26 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Wrapper, InnerWrapper, Icon, IconClose, PreviewArea, Thumb } from './Styled'
-import image from '../../assets/image.svg'
-import close from '../../assets/close.svg'
+import { Wrapper, InnerWrapper, PreviewArea, Thumb } from './Styled'
 
 const BottomPanel = ({ items, onSelect, selectedId }) => {
-  const [active, toggleActive] = useState(false)
+  const [active] = useState(true)
 
   return (
     <Wrapper onClick={ev => ev.stopPropagation()}>
       <InnerWrapper active={active}>
-        {!active && <Icon src={image} alt="" onClick={() => toggleActive(true)} />}
-        {active && (
-          <Fragment>
-            <IconClose src={close} alt="" onClick={() => toggleActive(false)} />
-            <PreviewArea>
-              {items.map(({ url, id }) => (
-                <Thumb src={url} key={id} onClick={() => onSelect(id)} selected={selectedId === id} />
-              ))}
-            </PreviewArea>
-          </Fragment>
-        )}
+        <Fragment>
+          <PreviewArea>
+            {items.map(({ url, id }) => (
+              <Thumb
+                src={url}
+                key={id}
+                onClick={() => onSelect(id)}
+                selected={selectedId === id}
+                style={{ zIndex: 22222 }}
+              />
+            ))}
+          </PreviewArea>
+        </Fragment>
       </InnerWrapper>
     </Wrapper>
   )

@@ -123,6 +123,7 @@ export const Slider = styled.input.attrs({ type: 'range' })`
   -webkit-appearance: none;
   cursor: pointer;
   outline: none;
+  margin-right: 0.7em;
 
   @media (min-width: 768px) {
     width: ${props => props.width[1] || 200}px;

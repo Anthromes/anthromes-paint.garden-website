@@ -18,7 +18,7 @@ export const LinksArea = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
-  ${props => props.withMargin && 'margin-right: 1em'};
+  background: white;
 
   & > a {
     text-decoration: none;
@@ -30,6 +30,7 @@ export const Logo = styled.img`
 
   @media (min-width: 768px) {
     display: block;
+    padding-left: 1em;
   }
 `
 

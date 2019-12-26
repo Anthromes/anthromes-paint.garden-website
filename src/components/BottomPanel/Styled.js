@@ -15,8 +15,9 @@ export const InnerWrapper = styled.div`
   padding: 0 30px;
   display: flex;
   align-items: center;
-  background: ${props => (props.active ? 'white' : 'transparent')};
-  ${props => props.active && 'box-shadow: 0 2px 7px lightgrey'};
+  background: white;
+  box-shadow: 0 2px 7px lightgrey;
+  z-index: 11111;
 `
 
 export const Icon = styled.img`
