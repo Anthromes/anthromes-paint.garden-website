@@ -17,27 +17,30 @@ import Overlay from '../Onboarding/overlay'
 const { API_URL } = Constants
 
 class App extends React.Component {
-  state = {
-    db: null,
-    showAbout: false,
-    selectedSection: {},
-    activePin: null,
-    activeImageIndexes: {},
-    showOnboarding: true,
-    showOnboardingTwo: false,
-    showOnboardingThree: false,
-    showOnboardingFour: false,
-    showOnboardingFive: false,
-  }
-
   constructor(props) {
     super(props)
+    this.state = {
+      db: {},
+      showAbout: false,
+      selectedSection: {},
+      activePin: null,
+      activeImageIndexes: {},
+      showOnboarding: true,
+      showOnboardingTwo: false,
+      showOnboardingThree: false,
+      showOnboardingFour: false,
+      showOnboardingFive: false,
+      loaded: false,
+    }
+  }
 
+  componentDidMount() {
     this.areaRef = createRef()
     api.get(API_URL).then(resp => {
       this.setState({ db: resp.data })
       this.setState({ selectedSection: resp.data.sections[0] })
       this.areaRef.current.scroll(calcInitialScroll(resp.data))
+      this.setState({ loaded: true })
     })
   }
 
@@ -80,81 +83,85 @@ class App extends React.Component {
     const width = document.documentElement.clientWidth
 
     return (
-      <Fragment>
-        {showOnboarding && (
-          <OnboardingOne
-            onClose={() => this.setState({ showOnboarding: false })}
-            onNext={() => this.setState({ showOnboardingTwo: true })}
-          ></OnboardingOne>
-        )}
-        {showOnboardingTwo && (
-          <OnboardingTwo
-            onClose={() => this.setState({ showOnboardingTwo: false })}
-            onNext={() => this.setState({ showOnboardingThree: true })}
-          />
-        )}
-        {showOnboardingThree && width > 740 ? (
-          <>
-            <OnboardingThree
-              onClose={() => this.setState({ showOnboardingThree: false })}
-              onNext={() => this.setState({ showOnboardingFour: true })}
+      <>
+        {this.state.loaded && (
+          <Fragment>
+            {showOnboarding && (
+              <OnboardingOne
+                onClose={() => this.setState({ showOnboarding: false })}
+                onNext={() => this.setState({ showOnboardingTwo: true })}
+              ></OnboardingOne>
+            )}
+            {showOnboardingTwo && (
+              <OnboardingTwo
+                onClose={() => this.setState({ showOnboardingTwo: false })}
+                onNext={() => this.setState({ showOnboardingThree: true })}
+              />
+            )}
+            {showOnboardingThree && width > 740 ? (
+              <>
+                <OnboardingThree
+                  onClose={() => this.setState({ showOnboardingThree: false })}
+                  onNext={() => this.setState({ showOnboardingFour: true })}
+                />
+                <Sidebar
+                  pin={{
+                    imgUrl: 'https://anth-api.herokuapp.com/uploads/1564312593584.jpg',
+                    headline: 'Reef',
+                    medium: 'Sardinia',
+                    description: 'Spring 2017',
+                  }}
+                  imgSrc={'https://anth-api.herokuapp.com/uploads/1564312593584.jpg'}
+                  zIndex={'99999'}
+                />
+              </>
+            ) : showOnboardingThree ? (
+              <OnboardingThree
+                onClose={() => this.setState({ showOnboardingThree: false })}
+                onNext={() => this.setState({ showOnboardingFour: true })}
+              />
+            ) : null}
+            {showOnboardingFour && (
+              <OnboardingFour
+                onClose={() => this.setState({ showOnboardingFour: false })}
+                onNext={() => this.setState({ showOnboardingFive: true })}
+              />
+            )}
+            {showOnboardingFive && (
+              <OnboardingFive
+                onClose={() => this.setState({ showOnboardingFive: false })}
+                onNext={() => this.setState({ showOnboardingFive: false })}
+              />
+            )}
+            {showOnboarding || showOnboardingThree || showOnboardingFive || showOnboardingTwo ? (
+              <Overlay />
+            ) : showOnboardingFour ? (
+              <Overlay bottom />
+            ) : null}
+            <Toolbar
+              activeSection={selectedSection}
+              activeImageIndex={activeImageIndexes[selectedSection.id]}
+              onShowOnboarding={() => this.setState({ showOnboarding: true })}
+              onShowAbout={() => this.setState({ showAbout: true })}
+              onChangeTimeline={this.onChangeActiveImageIndex}
+              showOnboardingTwo={this.state.showOnboardingTwo}
             />
-            <Sidebar
-              pin={{
-                imgUrl: 'https://anth-api.herokuapp.com/uploads/1564312593584.jpg',
-                headline: 'Reef',
-                medium: 'Sardinia',
-                description: 'Spring 2017',
-              }}
-              imgSrc={'https://anth-api.herokuapp.com/uploads/1564312593584.jpg'}
-              zIndex={'99999'}
-            />
-          </>
-        ) : showOnboardingThree ? (
-          <OnboardingThree
-            onClose={() => this.setState({ showOnboardingThree: false })}
-            onNext={() => this.setState({ showOnboardingFour: true })}
-          />
-        ) : null}
-        {showOnboardingFour && (
-          <OnboardingFour
-            onClose={() => this.setState({ showOnboardingFour: false })}
-            onNext={() => this.setState({ showOnboardingFive: true })}
-          />
-        )}
-        {showOnboardingFive && (
-          <OnboardingFive
-            onClose={() => this.setState({ showOnboardingFive: false })}
-            onNext={() => this.setState({ showOnboardingFive: false })}
-          />
-        )}
-        {showOnboarding || showOnboardingThree || showOnboardingFive || showOnboardingTwo ? (
-          <Overlay />
-        ) : showOnboardingFour ? (
-          <Overlay bottom />
-        ) : null}
-        <Toolbar
-          activeSection={selectedSection}
-          activeImageIndex={activeImageIndexes[selectedSection.id]}
-          onShowOnboarding={() => this.setState({ showOnboarding: true })}
-          onShowAbout={() => this.setState({ showAbout: true })}
-          onChangeTimeline={this.onChangeActiveImageIndex}
-          showOnboardingTwo={this.state.showOnboardingTwo}
-        />
-        <MainArea ref={this.areaRef}>
-          <Canvas
-            db={db}
-            onSectionSelect={this.onSelectSection}
-            selectedSectionId={selectedSection.id}
-            activeImageIndexes={activeImageIndexes}
-            onPinSelect={activePin => this.setState({ activePin })}
-            showOnboardingFive={this.state.showOnboardingFive}
-          />
-          {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}
+            <MainArea ref={this.areaRef}>
+              <Canvas
+                db={db}
+                onSectionSelect={this.onSelectSection}
+                selectedSectionId={selectedSection.id}
+                activeImageIndexes={activeImageIndexes}
+                onPinSelect={activePin => this.setState({ activePin })}
+                showOnboardingFive={this.state.showOnboardingFive}
+              />
+              {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}
 
-          {activePin && <Sidebar pin={activePin} onClose={() => this.setState({ activePin: null })} />}
-        </MainArea>
-      </Fragment>
+              {activePin && <Sidebar pin={activePin} onClose={() => this.setState({ activePin: null })} />}
+            </MainArea>
+          </Fragment>
+        )}
+      </>
     )
   }
 }
