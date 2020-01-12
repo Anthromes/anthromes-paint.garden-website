@@ -21,7 +21,7 @@ const Toolbar = ({
           {activeSection.name}
         </LinkText>
       )}
-      {activeSection.id && (
+      {(activeSection.id && activeSection.imageIds.length > 1) && (
         <Slider
           width={[150, 200]}
           value={activeImageIndex}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Pin from './Pin'
 import { PinViewWrapper } from './Styled'
 
-const Pins = ({ pins, zoomLevel, onPinSelect }) => {
+const Pins = ({ pins = [], zoomLevel, onPinSelect }) => {
   return (
     <PinViewWrapper>
       {pins.map((pin, i) => (

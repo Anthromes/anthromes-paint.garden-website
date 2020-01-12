@@ -32,15 +32,17 @@ class App extends React.Component {
       showOnboardingFive: false,
       loaded: false,
     }
+    this.areaRef = createRef()
   }
 
   componentDidMount() {
-    this.areaRef = createRef()
     api.get(API_URL).then(resp => {
       this.setState({ db: resp.data })
       this.setState({ selectedSection: resp.data.sections[0] })
-      this.areaRef.current.scroll(calcInitialScroll(resp.data))
-      this.setState({ loaded: true })
+      this.setState({ loaded: true }, () => {
+        if (this.areaRef.current)
+          this.areaRef.current.scroll(calcInitialScroll(resp.data))
+      })
     })
   }
 
@@ -56,7 +58,8 @@ class App extends React.Component {
       selectedSection,
       activeImageIndexes: { ...activeImageIndexes, [selectedSection.id]: activeImageIndex },
     })
-    if (isScrollTo) this.areaRef.current.scroll(calcScrollToSection(selectedSection.canvas, zoom))
+    if (isScrollTo && this.areaRef.current)
+      this.areaRef.current.scroll(calcScrollToSection(selectedSection.canvas, zoom))
   }
 
   onChangeActiveImageIndex = ev => {
