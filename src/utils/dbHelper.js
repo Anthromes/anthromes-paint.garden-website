@@ -5,13 +5,15 @@ export const getCanvasItems = (db, activeImageIndexes) => {
   const images = db.images
   return db.sections
     .filter(s => Boolean(s.canvas))
-    .map(({ id, imageIds, width, height }) => ({
+    .map(({ id, imageIds, width, height, posx, posy }) => ({
       id,
       url: images.find(
         im => im.id === imageIds[activeImageIndexes[id] !== undefined ? activeImageIndexes[id] : imageIds.length - 1],
       ).url,
       width,
       height,
+      posx,
+      posy
     }))
 }
 

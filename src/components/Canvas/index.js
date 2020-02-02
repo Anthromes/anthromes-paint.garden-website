@@ -20,10 +20,10 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
   const onZoomIn = () => zoom < constants.MAX_ZOOM_LEVEL && setZoom(zoom + 1)
   const onSectionSelectFromCanvas = sectionId => onSectionSelect(getSectionById(db, sectionId))
   const onSectionSelectFromPanel = sectionId => onSectionSelect(getSectionById(db, sectionId), true, zoom)
-  const canvasSize = calcCanvasSize(db.sections, zoom)
 
   return (
-    <Area onClick={() => onSectionSelect(null)} width={canvasSize.width} height={canvasSize.height}>
+    console.log(db.sections),
+    <Area style= {{position: 'absolute'}} onClick={() => onSectionSelect(null)}>
       {items.map(item => (
         <CanvasImage
           item={item}
