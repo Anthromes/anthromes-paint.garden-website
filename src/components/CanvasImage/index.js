@@ -13,9 +13,9 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
    // console.log(item),
     <img
       style = {{
-        position: 'relative',
-        top: x,
-        left: y,
+        position: 'absolute',
+        top: y,
+        left: x,
       }}
       src={item.url}
       isSelected={selectedItemId === item.id}
