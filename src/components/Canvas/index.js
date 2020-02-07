@@ -23,7 +23,7 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
 
   return (
     console.log(db.sections),
-    <Area style= {{position: 'absolute'}} onClick={() => onSectionSelect(null)}>
+    <Area  onClick={() => onSectionSelect(null)}>
       {items.map(item => (
         <CanvasImage
           item={item}
