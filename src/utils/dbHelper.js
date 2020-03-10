@@ -28,7 +28,7 @@ export const calcInitialScroll = db => {
 }
 
 export const calcScrollToSection = (canvas, zoom) => {
-  return { left: calcSizeWithZoom(canvas.x, zoom), top: calcSizeWithZoom(canvas.y, zoom), behavior: 'smooth' }
+  return { left: calcSizeWithZoom(canvas.posx, zoom), top: calcSizeWithZoom(canvas.posy, zoom), behavior: 'smooth' }
 }
 
 export const calcCanvasSize = (sections, zoom) => {

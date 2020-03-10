@@ -94,7 +94,7 @@ export const Image = styled.img`
   top: ${props => props.top || 0}px;
   left: ${props => props.left || 0}px;
   user-select: none;
-  ${props => props.isselected && ActiveImage};
+  ${props => props.selected && ActiveImage};
 `
 
 export const MobileView = styled.div`

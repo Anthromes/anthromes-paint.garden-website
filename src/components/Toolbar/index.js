@@ -33,18 +33,16 @@ const Toolbar = ({
 
     <DesktopView>
       <LinksArea>
+        <LinkText onClick={onShowOnboarding}>How to use</LinkText>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText onClick={onShowOnboarding}>Demo</LinkText>
-        <LinkText>Sign Up</LinkText>
-        <LinkText>Login</LinkText>
+        <LinkText>Join</LinkText>
       </LinksArea>
     </DesktopView>
     <MobileView>
       <MenuButton>
+        <LinkText onClick={onShowOnboarding}>How to use</LinkText>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText onClick={onShowOnboarding}>Demo</LinkText>
-        <LinkText>Sign Up</LinkText>
-        <LinkText>Login</LinkText>
+        <LinkText>Join</LinkText>
       </MenuButton>
     </MobileView>
   </Wrapper>

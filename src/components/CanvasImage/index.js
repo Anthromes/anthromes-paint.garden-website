@@ -18,13 +18,13 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
         left: x,
       }}
       src={item.url}
-      isselected={selectedItemId === item.id}
+      selected={selectedItemId === item.id}
       alt={''}
       width={width}
       height={height}
       onClick={ev => {
         ev.stopPropagation()
-        onSelect(item.id)
+        onSelect(item.id,  true, zoomLevel)
       }}
     />
   )

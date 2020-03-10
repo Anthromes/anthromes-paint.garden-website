@@ -51,15 +51,16 @@ class App extends React.Component {
     const { activeImageIndexes } = this.state
     // check for not set up index
     const activeImageIndex =
-      activeImageIndexes[selectedSection.id] === undefined
-        ? selectedSection.imageIds.length - 1
-        : activeImageIndexes[selectedSection.id]
+    activeImageIndexes[selectedSection.id] === undefined
+    ? selectedSection.imageIds.length - 1
+    : activeImageIndexes[selectedSection.id]
     this.setState({
       selectedSection,
       activeImageIndexes: { ...activeImageIndexes, [selectedSection.id]: activeImageIndex },
     })
-    if (isScrollTo && this.areaRef.current)
-      this.areaRef.current.scroll(calcScrollToSection(selectedSection.canvas, zoom))
+    if (isScrollTo && this.areaRef.current) {
+      this.areaRef.current.scroll(calcScrollToSection(selectedSection, zoom))
+    }
   }
 
   onChangeActiveImageIndex = ev => {

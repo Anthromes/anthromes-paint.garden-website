@@ -18,11 +18,10 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
 
   const onZoomOut = () => zoom > -constants.MAX_ZOOM_LEVEL && setZoom(zoom - 1)
   const onZoomIn = () => zoom < constants.MAX_ZOOM_LEVEL && setZoom(zoom + 1)
-  const onSectionSelectFromCanvas = sectionId => onSectionSelect(getSectionById(db, sectionId))
+  const onSectionSelectFromCanvas = (sectionId, isScrollTo, zoom) => onSectionSelect(getSectionById(db, sectionId), isScrollTo, zoom)
   const onSectionSelectFromPanel = sectionId => onSectionSelect(getSectionById(db, sectionId), true, zoom)
 
   return (
-    console.log(db.sections),
     <Area  onClick={() => onSectionSelect(null)}>
       {items.map(item => (
         <CanvasImage
