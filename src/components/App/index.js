@@ -25,7 +25,7 @@ class App extends React.Component {
       selectedSection: {},
       activePin: null,
       activeImageIndexes: {},
-      showOnboarding: true,
+      showOnboarding: false,
       showOnboardingTwo: false,
       showOnboardingThree: false,
       showOnboardingFour: false,

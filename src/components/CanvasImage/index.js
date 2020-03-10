@@ -18,7 +18,7 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
         left: x,
       }}
       src={item.url}
-      isSelected={selectedItemId === item.id}
+      isselected={selectedItemId === item.id}
       alt={''}
       width={width}
       height={height}

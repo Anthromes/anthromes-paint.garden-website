@@ -1,15 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Wrapper, ContentWrapper, CloseItem } from './Styled'
+import { Wrapper, ContentWrapper, CloseItem, LinkTest, BoldText } from './Styled'
 import Close from '../../assets/close.svg'
 
 const About = ({ onClose }) => (
   <Wrapper>
     <ContentWrapper>
-      <b>Anthromes</b>
-      <p style={{ marginTop: '1em' }}>
-        An Anthrome describe the terrestrial biosphere in its contemporary, human-altered form using global ecosystem
-        units defined by global patterns of sustained direct human interaction with ecosystems.
+      <b>About.</b>
+      <p style={{ marginTop: '1em', color: '#969696' }}>
+      Hello, there.<br />
+      Paint.garden is a tool for publishing each stage in the life of an artwork. It tracks the process for you – which you can share or examine yourself –
+       and it lets you annotate drafts and the moments of inspiration that feed your ideas. It’s a malleable, safe, private place to experiment and combine work with technology,
+        – kind of like an online workshop for creative guilds. <br />
+      There are three levels on Paint.garden: your <BoldText>canvas</BoldText>, your <BoldText>areas</BoldText>, and <BoldText>annotations</BoldText>.<br />
+      Use the slider to move through the layers of an area and the art and materials you’ve stored there.<br />
+      Annotations are the remarks and details you add to the layers of your areas. They can be placed anywhere on your canvas.<br />
+      You can create multiple projects using paint.garden, each is a canvas unique to your art.  To inform our research or help with the website build
+        <a style = {{textDecoration: 'none'}} href = "mailto:paint.garden0@gmail.com"><LinkTest> get in touch here</LinkTest></a>.
       </p>
       <CloseItem onClick={onClose}>
         <img src={Close} alt="Close" />
