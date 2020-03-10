@@ -8,7 +8,8 @@ const OnboardingThree = ({ onClose, onNext }) => {
     <AbstractCard
       imgSrc={pin}
       title="Annontation"
-      body="Annotations can be added anywhere on the canvas, click to learn about this area's inspiration, meaning, and related works."
+      body="Annotations are the remarks and details you add to the layers of your folder. You use them to record your method, tools or inspiration, and viewers use them to bring the story of your art alive.
+      Annotations can be added anywhere on a canvas."
       onClose={onClose}
       onNext={onNext}
       steps="2 of 4 steps"

@@ -8,7 +8,7 @@ import cart from '../../assets/shopping-cart.svg'
 const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
   <Wrapper style={{zIndex: `${zIndex}`}}>
     {pin.imageUrl ? (
-      <Image src={api.getImageUrl(pin.imageUrl) || { imgSrc }} alt={pin.headline} />
+      <Image src={api.getImageUrl(pin.image_url) || { imgSrc }} alt={pin.headline} />
     ) : (
       <Image src={imgSrc} alt={pin.headline} />
     )}

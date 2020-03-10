@@ -8,7 +8,7 @@ const OnboardingThree = ({ onClose, onNext }) => {
     <AbstractCard
       imgSrc={Image}
       title="Gallery"
-      body="To switch between section quickly, use the gallery and quickly find a specific section or image."
+      body="To switch between the areas of your canvas, use the gallery, which shows each ofyour areas as an icon at the bottom of the screen."
       onClose={onClose}
       onNext={onNext}
       steps="3 of 4 steps"
