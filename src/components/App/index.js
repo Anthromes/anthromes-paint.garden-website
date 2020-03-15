@@ -90,11 +90,11 @@ class App extends React.Component {
       <>
         {this.state.loaded && (
           <Fragment>
-            {showOnboarding && (
-              <OnboardingOne
-                onClose={() => this.setState({ showOnboarding: false })}
+            {showOnboardingFive && (
+              <OnboardingFive
+                onClose={() => this.setState({ showOnboardingFive: false })}
                 onNext={() => this.setState({ showOnboardingTwo: true })}
-              ></OnboardingOne>
+              ></OnboardingFive>
             )}
             {showOnboardingTwo && (
               <OnboardingTwo
@@ -131,12 +131,12 @@ class App extends React.Component {
                 onNext={() => this.setState({ showOnboardingFive: true })}
               />
             )}
-            {showOnboardingFive && (
+            {/* {showOnboardingFive && (
               <OnboardingFive
                 onClose={() => this.setState({ showOnboardingFive: false })}
                 onNext={() => this.setState({ showOnboardingFive: false })}
               />
-            )}
+            )} */}
             {showOnboarding || showOnboardingThree || showOnboardingFive || showOnboardingTwo ? (
               <Overlay />
             ) : showOnboardingFour ? (
@@ -145,7 +145,7 @@ class App extends React.Component {
             <Toolbar
               activeSection={selectedSection}
               activeImageIndex={activeImageIndexes[selectedSection.id]}
-              onShowOnboarding={() => this.setState({ showOnboarding: true })}
+              onShowOnboarding={() => this.setState({ showOnboardingFive: true })}
               onShowAbout={() => this.setState({ showAbout: true })}
               onChangeTimeline={this.onChangeActiveImageIndex}
               showOnboardingTwo={this.state.showOnboardingTwo}

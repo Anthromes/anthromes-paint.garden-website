@@ -7,14 +7,14 @@ const OnboardingFive = ({ onClose, onNext }) => {
   return (
     <AbstractCard
       imgSrc={Wizard}
-      title="Scroll & Zoom"
-      body="Your canvas is like one big map. Scroll anywhere and zoom using the magnifying icon."
+      title="Hello, there."
+      body="Paint.garden is like one big map. Scroll anywhere and zoom using the magnifying icon and explore ideas and artworks."
       onClose={onClose}
-      onNext={onClose}
-      steps="4 of 4 steps"
-      button="Start exploring"
-      top="25%"
-      left="25%"
+      onNext={onNext}
+      steps="1 of 4 steps"
+      button="Next"
+      top="calc(50% - 90px)"
+      left="calc(50% - 223px)"
     />
   )
 }
