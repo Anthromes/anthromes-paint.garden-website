@@ -16,7 +16,7 @@ const Toolbar = ({
   <Wrapper>
     <LinksArea style={{ zIndex: `${showOnboardingTwo ? 99999 : 0}` }}>
       <Logo src={LogoSrc} alt="Paint.garden" />
-      {activeSection.id && (
+      {/* {activeSection.id && (
         <LinkText bold flexBasis="50%">
           {activeSection.name}
         </LinkText>
@@ -28,7 +28,7 @@ const Toolbar = ({
           max={activeSection.imageIds.length - 1}
           onChange={onChangeTimeline}
         />
-      )}
+      )} */}
     </LinksArea>
 
     <DesktopView>

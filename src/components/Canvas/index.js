@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CanvasImage from '../CanvasImage'
+import TimelineWrapper from '../TimelineWrapper'
 import Zoom from '../Zoom'
 import BottomPanel from '../BottomPanel'
 import Pins from '../Pins'
@@ -9,7 +10,17 @@ import { getCanvasItems, getSectionById, calcCanvasSize } from '../../utils/dbHe
 import { getCurrentZoomPercentage } from '../../utils/calcZoom'
 import { Area } from './Styled'
 
-const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeImageIndexes, showOnboardingFive }) => {
+const Canvas = ({
+    db,
+    onSectionSelect,
+    selectedSectionId,
+    onPinSelect,
+    activeImageIndexes,
+    showOnboardingFive,
+    activeSection = {},
+    activeImageIndex,
+    onChangeTimeline,
+  }) => {
   const [zoom, setZoom] = useState(0)
   if (!db) return <div>Loading</div>
 
@@ -39,6 +50,12 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
         value={getCurrentZoomPercentage(zoom)}
         showOnboardingFive={showOnboardingFive}
       />
+      <TimelineWrapper
+        activeSection={activeSection}
+        activeImageIndex={activeImageIndex}
+        onChangeTimeline={onChangeTimeline}
+        activeImageIndexes = {activeImageIndexes}
+      />
       <BottomPanel items={items} onSelect={onSectionSelectFromPanel} selectedId={selectedSectionId} />
     </Area>
   )
@@ -51,6 +68,9 @@ Canvas.propTypes = {
   onSectionSelect: PropTypes.func,
   onPinSelect: PropTypes.func,
   showOnboardingFive: PropTypes.bool,
+  activeSection: PropTypes.object.isRequired,
+  activeImageIndex: PropTypes.number,
+  onChangeTimeline: PropTypes.func,
 }
 
 export default Canvas

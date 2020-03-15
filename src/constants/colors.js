@@ -3,6 +3,7 @@ export default {
   subGrey: '#232323',
   blue: '#00ABDD',
   darkBlue: '#6D878F',
+  sliderBlue: '#0075d9',
   buttonBg: '#E0F4FD',
   darkGrey: '#979797',
   mainGrey: '#446982',

@@ -158,6 +158,9 @@ class App extends React.Component {
                 activeImageIndexes={activeImageIndexes}
                 onPinSelect={activePin => this.setState({ activePin })}
                 showOnboardingFive={this.state.showOnboardingFive}
+                activeSection={selectedSection}
+                activeImageIndex={activeImageIndexes[selectedSection.id]}
+                onChangeTimeline={this.onChangeActiveImageIndex}
               />
               {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}
 
