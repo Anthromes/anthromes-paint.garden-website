@@ -43,7 +43,7 @@ const Canvas = ({
           zoomLevel={zoom}
         />
       ))}
-      <Pins pins={db.pins} zoomLevel={zoom} onPinSelect={onPinSelect} />
+      <Pins pins={db.annotations} zoomLevel={zoom} onPinSelect={onPinSelect} />
       <Zoom
         zoomIn={onZoomIn}
         zoomOut={onZoomOut}

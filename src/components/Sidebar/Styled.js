@@ -67,8 +67,8 @@ export const TextZone = styled.div`
 
 export const CloseZone = styled.div`
   position: absolute;
-  top: 16px;
-  right: 19px;
+  top: 0;
+  right: 0;
   width: 51px;
   height: 51px;
   border-radius: 50%;
@@ -77,6 +77,7 @@ export const CloseZone = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 10;
 `
 
 export const CartZone = styled.a.attrs({

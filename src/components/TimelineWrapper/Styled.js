@@ -6,10 +6,10 @@ bottom: 65px;
 align-items: center;
 padding: 0;
 width: 100%;
-background-color: rgba(255,255,255, 0.6);
+background-color: rgba(255,255,255, 0.8);
 justify-content: space-between;
 box-shadow: 0 2px 7px lightgrey;
-
+z-index: 22222;
 @media (min-width: 768px) {
   padding: 0 25px;
 }
