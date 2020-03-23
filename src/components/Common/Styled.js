@@ -134,7 +134,7 @@ export const Slider = styled.input.attrs({ type: 'range' })`
   &::-webkit-slider-runnable-track {
     width: 100%;
     height: ${props => props.height || sliderHeight}px;
-    background: ${colors.blue};
+    background: ${colors.sliderBlue};
     border: none;
     border-radius: ${props => props.height || sliderHeight}px;
     cursor: pointer;
@@ -146,10 +146,14 @@ export const Slider = styled.input.attrs({ type: 'range' })`
     height: ${thumbSize}px;
     width: ${thumbSize}px;
     border-radius: 50%;
-    background: ${colors.white};
+    background: ${colors.sliderBlue};
     margin-top: -5px;
     cursor: pointer;
     box-shadow: 0 0 2px ${colors.darkGrey};
+  }
+
+  &::-webkit-progress-value {
+    background-color: #fff;
   }
 
   &:focus {

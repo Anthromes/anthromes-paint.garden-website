@@ -23,7 +23,7 @@ export const ContentWrapper = styled.div`
   margin: 2em;
 
   @media (min-width: 960px) {
-    max-width: 600px;
+    max-width: 800px;
   }
 `
 
