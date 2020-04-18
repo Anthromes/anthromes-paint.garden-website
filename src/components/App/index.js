@@ -158,6 +158,7 @@ class App extends React.Component {
                 activeImageIndexes={activeImageIndexes}
                 onPinSelect={activePin => this.setState({ activePin })}
                 showOnboardingFive={this.state.showOnboardingFive}
+                showOnboardingTwo={this.state.showOnboardingTwo}
                 activeSection={selectedSection}
                 activeImageIndex={activeImageIndexes[selectedSection.id]}
                 onChangeTimeline={this.onChangeActiveImageIndex}

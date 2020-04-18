@@ -17,11 +17,12 @@ const Canvas = ({
     onPinSelect,
     activeImageIndexes,
     showOnboardingFive,
+    showOnboardingTwo,
     activeSection = {},
     activeImageIndex,
     onChangeTimeline,
   }) => {
-  const [zoom, setZoom] = useState(0)
+  const [zoom, setZoom] = useState(-10)
   if (!db) return <div>Loading</div>
 
   const items = getCanvasItems(db, activeImageIndexes)
@@ -55,6 +56,7 @@ const Canvas = ({
         activeImageIndex={activeImageIndex}
         onChangeTimeline={onChangeTimeline}
         activeImageIndexes = {activeImageIndexes}
+        showOnboardingTwo={showOnboardingTwo}
       />
       <BottomPanel items={items} onSelect={onSectionSelectFromPanel} selectedId={selectedSectionId} />
     </Area>

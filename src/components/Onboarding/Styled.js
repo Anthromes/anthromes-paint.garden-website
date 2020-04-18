@@ -19,6 +19,54 @@ export const Wrapper = styled.div`
   }
 `
 
+export const NoSteps = styled.div`
+  display: flex;
+  margin-left: 20px;
+  padding-top: 7px;
+  font-family: Spartan Proxima Nova Semibold;
+  justify-content: flex-start;
+  @media (max-width: 330px) {
+    margin-left: 10px;
+  }
+`
+
+export const  OnBoardingText = styled.p `
+  color: lightGray;
+  font-size: 15px;
+  cursor: pointer;
+  @media (max-width: 330px) {
+    font-size: 12px;
+  }
+`
+
+
+export const SkipTutorial = styled.div`
+  display: flex;
+  margin-right: 10px;
+  marginrleft: 10px;
+  padding-top: 7px;
+  justify-content: flex-end;
+    @media (max-width: 330px) {
+      margin-left: 10px;
+    }
+`
+
+export const OnBoardingButton = styled.div`
+  display: flex;
+  background: rgb(86, 145, 210);
+  padding: 8px 15px 9px 13px;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  height: 38px;
+  margin-right: 15px;
+  cursor: pointer;
+  justify-content: flex-end;
+  @media (max-width: 330px) {
+    font-size: 12px;
+  }
+`
+
 const bottomCss = css`
   position: absolute;
   bottom: 0.7em;

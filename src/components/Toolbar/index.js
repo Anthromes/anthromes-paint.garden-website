@@ -14,7 +14,7 @@ const Toolbar = ({
   showOnboardingTwo,
 }) => (
   <Wrapper>
-    <LinksArea style={{ zIndex: `${showOnboardingTwo ? 99999 : 0}` }}>
+    <LinksArea>
       <Logo src={LogoSrc} alt="Paint.garden" />
       {/* {activeSection.id && (
         <LinkText bold flexBasis="50%">

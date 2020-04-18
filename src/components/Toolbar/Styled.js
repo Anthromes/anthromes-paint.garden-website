@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   padding: 0;
   justify-content: space-between;
   box-shadow: 0 2px 7px lightgrey;
+  position: relative;
 
   @media (min-width: 768px) {
     padding: 0 25px;
@@ -26,12 +27,8 @@ export const LinksArea = styled.div`
 `
 
 export const Logo = styled.img`
-  display: none;
-
-  @media (min-width: 768px) {
     display: block;
     padding-left: 1em;
-  }
 `
 
 export const BtnContainer = styled.div`
@@ -39,17 +36,17 @@ export const BtnContainer = styled.div`
   cursor: pointer;
   width: 25px;
   margin-right: 0.5em;
-  position: relative;
 `
 
 export const BtnMenu = styled.div`
   position: absolute;
   z-index: 10000;
   background: white;
-  top: 46px;
-  right: -8px;
+  top: 66px;
+  left: 1px;
   padding: 0.5em 1em;
   display: block;
+  width: 200px;
 `
 
 export const Bar = styled.div`

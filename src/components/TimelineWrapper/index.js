@@ -8,18 +8,28 @@ const TimelineWrapper = ({
   activeSection = {},
   activeImageIndex,
   onChangeTimeline,
+  activeImageIndexes,
+  showOnboardingTwo
 }) => {
     return (
-        <Wrapper onClick={ev => ev.stopPropagation()}>
+        <Wrapper style={{ zIndex: `${showOnboardingTwo ? 99999 : 100}` }} onClick={ev => ev.stopPropagation()}>
             {activeSection.id && (
-                <LinkText style={{display: 'inline-block'}} bold>
+                <LinkText style={{
+                    display: 'block',
+                    textAlign: 'center',
+                    fontSize: '0.8em',
+                }} bold>
                 {activeSection.name}
                 </LinkText>
             )}
             {(activeSection.id && activeSection.imageIds.length > 1) && (
                 <Slider
                     width={[150, 200]}
-                    style={{display: 'inline-block', width: "60%"}}
+                    style={{
+                        display: 'block',
+                        width: '90%',
+                        margin: '0 auto',
+                    }}
                     min={0}
                     step={1}
                     value={activeImageIndex}

@@ -9,7 +9,7 @@ width: 100%;
 background-color: rgba(255,255,255, 0.8);
 justify-content: space-between;
 box-shadow: 0 2px 7px lightgrey;
-z-index: 22222;
+z-index: 222;
 @media (min-width: 768px) {
   padding: 0 25px;
 }

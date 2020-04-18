@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import {NoSteps, SkipTutorial, OnBoardingButton, OnBoardingText} from './Styled'
 import '../../assets/fonts/fonts.css'
 
 const AbstractCard = ({ onClose, onNext, title, body, imgSrc, steps, button, top, left }) => {
@@ -43,9 +43,9 @@ const AbstractCard = ({ onClose, onNext, title, body, imgSrc, steps, button, top
             flex: '0.2 0.2 100%',
           }}
         >
-          <p style={{ fontSize: 14, fontFamily: 'Proxima Nova Semibold', marginTop: -5, marginBottom: 5 }}>{title}</p>
+          <p style={{ fontSize: 14, fontFamily: 'Spartan Semibold', marginTop: -5, marginBottom: 5 }}>{title}</p>
           <div style={{ flexBasis: '100%', height: 0 }} />
-          <p style={{ fontSize: 14, fontFamily: 'Proxima Nova Light' }}>{body}</p>
+          <p style={{ fontSize: 14, fontFamily: 'Spartan Light' }}>{body}</p>
         </div>
         <div style={{ flexBasis: '100%', height: 0 }} />
         <div
@@ -62,50 +62,22 @@ const AbstractCard = ({ onClose, onNext, title, body, imgSrc, steps, button, top
             justifyContent: 'space-between',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              marginLeft: '20px',
-              paddingTop: '7px',
-              fontFamily: 'Proxima Nova Semibold',
-              justifyContent: 'flex-start',
-            }}
-          >
-            <p style={{ color: 'lightGray', fontSize: 15, cursor: 'pointer' }}>{steps}</p>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              marginRight: '20px',
-              marginLeft: '40px',
-              paddingTop: '7px',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <p onClick={onClose} style={{ color: 'lightGray', fontSize: 15, cursor: 'pointer' }}>
+          <NoSteps>
+            <OnBoardingText>{steps}</OnBoardingText>
+          </NoSteps>
+          <SkipTutorial>
+            <OnBoardingText onClick={onClose}>
               Skip the tour
-            </p>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              background: 'rgb(86, 145, 210)',
-              padding: '8px 15px 9px 13px',
-              borderRadius: 4,
-              fontSize: 15,
-              color: 'white',
-              height: 38,
-              marginRight: 15,
-              cursor: 'pointer',
-              justifyContent: 'flex-end',
-            }}
+            </OnBoardingText>
+          </SkipTutorial>
+          <OnBoardingButton
             onClick={() => {
               onClose()
               onNext()
             }}
           >
             {button}
-          </div>
+          </OnBoardingButton>
         </div>
       </div>
     </div>
