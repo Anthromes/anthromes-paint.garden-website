@@ -3,7 +3,7 @@ import colors from '../../constants/colors'
 
 export const Wrapper = styled.div`
   position: fixed;
-  right: 31px;
+  right: 10px;
   top: 91px;
   z-index: 100;
 `

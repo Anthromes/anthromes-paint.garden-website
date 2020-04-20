@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CanvasImage from '../CanvasImage'
 import TimelineWrapper from '../TimelineWrapper'
+import TimelineWrapperNew from '../TimelineWrapperNew'
 import Zoom from '../Zoom'
 import BottomPanel from '../BottomPanel'
 import Pins from '../Pins'
@@ -51,13 +52,20 @@ const Canvas = ({
         value={getCurrentZoomPercentage(zoom)}
         showOnboardingFive={showOnboardingFive}
       />
-      <TimelineWrapper
+      <TimelineWrapperNew
         activeSection={activeSection}
         activeImageIndex={activeImageIndex}
         onChangeTimeline={onChangeTimeline}
         activeImageIndexes = {activeImageIndexes}
         showOnboardingTwo={showOnboardingTwo}
       />
+      {/* <TimelineWrapper
+        activeSection={activeSection}
+        activeImageIndex={activeImageIndex}
+        onChangeTimeline={onChangeTimeline}
+        activeImageIndexes = {activeImageIndexes}
+        showOnboardingTwo={showOnboardingTwo}
+      /> */}
       <BottomPanel items={items} onSelect={onSectionSelectFromPanel} selectedId={selectedSectionId} />
     </Area>
   )

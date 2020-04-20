@@ -29,6 +29,7 @@ export const LinksArea = styled.div`
 export const Logo = styled.img`
     display: block;
     padding-left: 1em;
+    margin-top: -3px;
 `
 
 export const BtnContainer = styled.div`

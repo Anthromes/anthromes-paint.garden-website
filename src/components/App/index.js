@@ -25,6 +25,7 @@ class App extends React.Component {
       selectedSection: {},
       activePin: null,
       activeImageIndexes: {},
+      activeImageIndex: null,
       showOnboarding: false,
       showOnboardingTwo: false,
       showOnboardingThree: false,
@@ -39,6 +40,8 @@ class App extends React.Component {
     api.get(API_URL).then(resp => {
       this.setState({ db: resp.data })
       this.setState({ selectedSection: resp.data.sections[0] })
+      this.setState({ activeImageIndexes: {...this.state.activeImageIndexes, [resp.data.sections[0].id]: 0}})
+      this.setState({ activeImageIndex: 0 })
       this.setState({ loaded: true }, () => {
         if (this.areaRef.current)
           this.areaRef.current.scroll(calcInitialScroll(resp.data))
@@ -57,6 +60,7 @@ class App extends React.Component {
     this.setState({
       selectedSection,
       activeImageIndexes: { ...activeImageIndexes, [selectedSection.id]: activeImageIndex },
+      activeImageIndex: activeImageIndex
     })
     if (isScrollTo && this.areaRef.current) {
       this.areaRef.current.scroll(calcScrollToSection(selectedSection, zoom))
@@ -74,6 +78,7 @@ class App extends React.Component {
     const {
       db,
       activeImageIndexes,
+      activeImageIndex,
       showOnboarding,
       showOnboardingTwo,
       showOnboardingThree,
@@ -160,7 +165,7 @@ class App extends React.Component {
                 showOnboardingFive={this.state.showOnboardingFive}
                 showOnboardingTwo={this.state.showOnboardingTwo}
                 activeSection={selectedSection}
-                activeImageIndex={activeImageIndexes[selectedSection.id]}
+                activeImageIndex={activeImageIndex}
                 onChangeTimeline={this.onChangeActiveImageIndex}
               />
               {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}

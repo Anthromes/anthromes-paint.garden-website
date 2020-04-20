@@ -6,7 +6,7 @@ import AbstractCard from './abstractCard'
 const OnboardingFive = ({ onClose, onNext }) => {
   return (
     <AbstractCard
-      imgSrc={Wizard}
+      imgSrc={null}
       title="Hello, there."
       body="Paint.garden is like one big map. Scroll anywhere and zoom using the magnifying icon and explore ideas and artworks."
       onClose={onClose}

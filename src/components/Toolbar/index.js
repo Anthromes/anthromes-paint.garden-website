@@ -5,6 +5,7 @@ import { LinkText, MobileView, DesktopView, Slider } from '../Common/Styled'
 import MenuButton from './MenuButton'
 import LogoSrc from '../../assets/logo.svg'
 
+
 const Toolbar = ({
   activeSection = {},
   activeImageIndex,

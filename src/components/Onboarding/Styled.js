@@ -22,11 +22,11 @@ export const Wrapper = styled.div`
 export const NoSteps = styled.div`
   display: flex;
   margin-left: 20px;
-  padding-top: 7px;
+  padding-top: 8px;
   font-family: Spartan Proxima Nova Semibold;
   justify-content: flex-start;
-  @media (max-width: 330px) {
-    margin-left: 10px;
+  @media (max-width: 450px) {
+    font-size: 12px;
   }
 `
 
@@ -34,7 +34,7 @@ export const  OnBoardingText = styled.p `
   color: lightGray;
   font-size: 15px;
   cursor: pointer;
-  @media (max-width: 330px) {
+  @media (max-width: 450px) {
     font-size: 12px;
   }
 `
@@ -44,11 +44,18 @@ export const SkipTutorial = styled.div`
   display: flex;
   margin-right: 10px;
   marginrleft: 10px;
-  padding-top: 7px;
+  padding-top: 8px;
   justify-content: flex-end;
-    @media (max-width: 330px) {
-      margin-left: 10px;
+    @media (max-width: 450px) {
+      font-size: 12px;
     }
+`
+
+export const TutorialText = styled.p `
+  font-size: 14px;
+  @media (max-width: 450px) {
+    font-size: 12px;
+  }
 `
 
 export const OnBoardingButton = styled.div`
@@ -62,7 +69,7 @@ export const OnBoardingButton = styled.div`
   margin-right: 15px;
   cursor: pointer;
   justify-content: flex-end;
-  @media (max-width: 330px) {
+  @media (max-width: 450px) {
     font-size: 12px;
   }
 `
