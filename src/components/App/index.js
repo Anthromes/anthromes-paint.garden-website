@@ -36,16 +36,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-
     const project_id = this.props.match.params.project_id;
-    api.get(API_URL + '/' + project_id ).then(resp => {
-      this.setState({ db: resp.data })
-      this.setState({ selectedSection: resp.data.sections[0] })
-      this.setState({ activeImageIndexes: {...this.state.activeImageIndexes, [resp.data.sections[0].id]: 0}})
+    api.get(API_URL + '/' + project_id ).then(({ data }) => {
+      this.setState({ db: data })
+      if (!(data.sections && data.sections.length)) {
+        return
+      }
+      this.setState({ selectedSection: data.sections[0] })
+      this.setState({ activeImageIndexes: {...this.state.activeImageIndexes, [data.sections[0].id]: 0}})
       this.setState({ activeImageIndex: 0 })
       this.setState({ loaded: true }, () => {
         if (this.areaRef.current)
-          this.areaRef.current.scroll(calcInitialScroll(resp.data))
+          this.areaRef.current.scroll(calcInitialScroll(data))
       })
     })
   }
