@@ -6,15 +6,14 @@ import close from '../../assets/close.svg'
 import cart from '../../assets/shopping-cart.svg'
 
 const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
-  console.log(pin),
-  <Wrapper style={{zIndex: `${zIndex}`}}>
+  <Wrapper style={{ zIndex: `${zIndex}` }}>
     {pin.imageUrl ? (
       <Image src={api.getImageUrl(pin.image_url) || { imgSrc }} alt={pin.headline} />
     ) : (
       <Image src={imgSrc} alt={pin.headline} />
     )}
     <CloseZone onClick={onClose}>
-      <img src={close}  alt={'Close'} />
+      <img src={close} alt={'Close'} />
     </CloseZone>
     <TextZone>
       <TopZone>

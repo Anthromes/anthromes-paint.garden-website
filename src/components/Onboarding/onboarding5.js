@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Wizard from '../../assets/wizard.svg'
 import AbstractCard from './abstractCard'
 
 const OnboardingFive = ({ onClose, onNext }) => {

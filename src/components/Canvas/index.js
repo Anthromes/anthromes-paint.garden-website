@@ -1,28 +1,27 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CanvasImage from '../CanvasImage'
-import TimelineWrapper from '../TimelineWrapper'
 import TimelineWrapperNew from '../TimelineWrapperNew'
 import Zoom from '../Zoom'
 import BottomPanel from '../BottomPanel'
 import Pins from '../Pins'
 import constants from '../../constants'
-import { getCanvasItems, getSectionById, calcCanvasSize } from '../../utils/dbHelper'
+import { getCanvasItems, getSectionById } from '../../utils/dbHelper'
 import { getCurrentZoomPercentage } from '../../utils/calcZoom'
 import { Area } from './Styled'
 
 const Canvas = ({
-    db,
-    onSectionSelect,
-    selectedSectionId,
-    onPinSelect,
-    activeImageIndexes,
-    showOnboardingFive,
-    showOnboardingTwo,
-    activeSection = {},
-    activeImageIndex,
-    onChangeTimeline,
-  }) => {
+  db,
+  onSectionSelect,
+  selectedSectionId,
+  onPinSelect,
+  activeImageIndexes,
+  showOnboardingFive,
+  showOnboardingTwo,
+  activeSection = {},
+  activeImageIndex,
+  onChangeTimeline,
+}) => {
   const [zoom, setZoom] = useState(-10)
   if (!db) return <div>Loading</div>
 
@@ -31,11 +30,12 @@ const Canvas = ({
 
   const onZoomOut = () => zoom > -constants.MAX_ZOOM_LEVEL && setZoom(zoom - 1)
   const onZoomIn = () => zoom < constants.MAX_ZOOM_LEVEL && setZoom(zoom + 1)
-  const onSectionSelectFromCanvas = (sectionId, isScrollTo, zoom) => onSectionSelect(getSectionById(db, sectionId), isScrollTo, zoom)
+  const onSectionSelectFromCanvas = (sectionId, isScrollTo, zoom) =>
+    onSectionSelect(getSectionById(db, sectionId), isScrollTo, zoom)
   const onSectionSelectFromPanel = sectionId => onSectionSelect(getSectionById(db, sectionId), true, zoom)
 
   return (
-    <Area  onClick={() => onSectionSelect(null)}>
+    <Area onClick={() => onSectionSelect(null)}>
       {items.map(item => (
         <CanvasImage
           item={item}
@@ -56,7 +56,7 @@ const Canvas = ({
         activeSection={activeSection}
         activeImageIndex={activeImageIndex}
         onChangeTimeline={onChangeTimeline}
-        activeImageIndexes = {activeImageIndexes}
+        activeImageIndexes={activeImageIndexes}
         showOnboardingTwo={showOnboardingTwo}
       />
       {/* <TimelineWrapper

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image } from '../Common/Styled'
 import { calcSizeWithZoom } from '../../utils/calcZoom'
 
 const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
@@ -11,12 +10,12 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
 
   return (
     <img
-      style = {{
+      style={{
         position: 'absolute',
         top: y,
         left: x,
         border: selectedItemId === item.id ? '2px solid #00abdc' : '',
-        boxSizing: "border-box",
+        boxSizing: 'border-box',
         zIndex: selectedItemId === item.id ? '20' : '1',
       }}
       src={item.img !== undefined ? item.img.url : ''}
@@ -26,7 +25,7 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
       height={height}
       onClick={ev => {
         ev.stopPropagation()
-        onSelect(item.id,  true, zoomLevel)
+        onSelect(item.id, true, zoomLevel)
       }}
     />
   )

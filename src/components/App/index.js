@@ -7,7 +7,6 @@ import Toolbar from '../Toolbar'
 import Canvas from '../Canvas'
 import About from '../About'
 import Sidebar from '../Sidebar'
-import OnboardingOne from '../Onboarding/onboarding1'
 import OnboardingTwo from '../Onboarding/onboarding2'
 import OnboardingThree from '../Onboarding/onboarding3'
 import OnboardingFour from '../Onboarding/onboarding4'
@@ -36,18 +35,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const project_id = this.props.match.params.project_id;
-    api.get(API_URL + '/' + project_id ).then(({ data }) => {
+    const project_id = this.props.match.params.project_id
+    api.get(API_URL + '/' + project_id).then(({ data }) => {
       this.setState({ db: data })
       if (!(data.sections && data.sections.length)) {
         return
       }
       this.setState({ selectedSection: data.sections[0] })
-      this.setState({ activeImageIndexes: {...this.state.activeImageIndexes, [data.sections[0].id]: 0}})
+      this.setState({ activeImageIndexes: { ...this.state.activeImageIndexes, [data.sections[0].id]: 0 } })
       this.setState({ activeImageIndex: 0 })
       this.setState({ loaded: true }, () => {
-        if (this.areaRef.current)
-          this.areaRef.current.scroll(calcInitialScroll(data))
+        if (this.areaRef.current) this.areaRef.current.scroll(calcInitialScroll(data))
       })
     })
   }
@@ -57,13 +55,13 @@ class App extends React.Component {
     const { activeImageIndexes } = this.state
     // check for not set up index
     const activeImageIndex =
-    activeImageIndexes[selectedSection.id] === undefined
-    ? selectedSection.imageIds.length - 1
-    : activeImageIndexes[selectedSection.id]
+      activeImageIndexes[selectedSection.id] === undefined
+        ? selectedSection.imageIds.length - 1
+        : activeImageIndexes[selectedSection.id]
     this.setState({
       selectedSection,
       activeImageIndexes: { ...activeImageIndexes, [selectedSection.id]: activeImageIndex },
-      activeImageIndex: activeImageIndex
+      activeImageIndex: activeImageIndex,
     })
     if (isScrollTo && this.areaRef.current) {
       this.areaRef.current.scroll(calcScrollToSection(selectedSection, zoom))
