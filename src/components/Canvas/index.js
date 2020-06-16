@@ -22,7 +22,7 @@ const Canvas = ({
   activeImageIndex,
   onChangeTimeline,
 }) => {
-  const [zoom, setZoom] = useState(-10)
+  const [zoom, setZoom] = useState(constants.DEFAULT_ZOOM_LEVEL)
   if (!db) return <div>Loading</div>
 
   const items = getCanvasItems(db, activeImageIndexes)
