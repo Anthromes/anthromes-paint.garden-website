@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <Router>
-        
         <Switch>
           <Route path={'/:project_id'} exact component={App} />
         </Switch>

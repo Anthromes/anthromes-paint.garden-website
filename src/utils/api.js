@@ -6,6 +6,7 @@ const apiUrl = `${process.env.REACT_APP_API_URL || 'https://api.paint.garden'}${
 const api = {
   get(url, params) {
     let path = `${apiUrl}${url}`
+    console.log(path);
     if (params) {
       Object.keys(params).forEach(key => {
         path += `&${key}=${encodeURIComponent(params[key])}`

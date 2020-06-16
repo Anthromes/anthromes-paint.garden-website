@@ -7,9 +7,9 @@ export const getCanvasItems = (db, activeImageIndexes) => {
     .filter(s => Boolean(s.canvas))
     .map(({ id, imageIds, width, height, posx, posy }) => ({
       id,
-      url: images.find(
-        im => im.id === imageIds[activeImageIndexes[id] !== undefined ? activeImageIndexes[id] : imageIds.length - 1],
-      ).url,
+      img: images.find(
+        im => im.id === imageIds[activeImageIndexes[id] !== undefined ? activeImageIndexes[id] : imageIds.length - 1], 
+      ),
       width,
       height,
       posx,

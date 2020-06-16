@@ -19,7 +19,7 @@ const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
         boxSizing: "border-box",
         zIndex: selectedItemId === item.id ? '20' : '1',
       }}
-      src={item.url}
+      src={item.img !== undefined ? item.img.url : ''}
       selected={selectedItemId === item.id}
       alt={''}
       width={width}
