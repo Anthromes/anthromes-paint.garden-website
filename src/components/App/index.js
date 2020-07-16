@@ -170,7 +170,6 @@ class App extends React.Component {
                 onChangeTimeline={this.onChangeActiveImageIndex}
               />
               {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}
-
               {activePin && <Sidebar pin={activePin} onClose={() => this.setState({ activePin: null })} />}
             </MainArea>
           </Fragment>
