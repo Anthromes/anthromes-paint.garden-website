@@ -5,6 +5,7 @@ import { calcSizeWithZoom } from '../../utils/calcZoom'
 import PinIcon from '../../assets/Annotation_t.svg'
 
 const Pin = ({ data, onPinClick, zoomLevel }) => (
+    console.log(PinIcon),
   <PinWrapper x={calcSizeWithZoom(data.posx, zoomLevel)} y={calcSizeWithZoom(data.posy, zoomLevel)}>
     <img
       src={PinIcon}

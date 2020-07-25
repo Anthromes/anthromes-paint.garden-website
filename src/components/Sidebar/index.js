@@ -8,8 +8,8 @@ import cart from '../../assets/shopping-cart.svg'
 const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
   console.log(pin),
   <Wrapper style={{ zIndex: `${zIndex}` }}>
-    {pin.imageUrl ? (
-      <Image src={pin.image_url || { imgSrc }} alt={pin.headline} />
+    {pin.image_url ? (
+      <Image src={pin.image_url ||  imgSrc } alt={pin.headline} />
     ) : (
       <Image src={imgSrc} alt={pin.headline} />
     )}
