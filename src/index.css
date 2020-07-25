@@ -5,7 +5,7 @@ body {
   font-size: 18px;
   line-height: 22px;
   height: 100%;
-  font-family: 'quiroh', 'Helvetica Neue', sans-serif;
+  font-family: 'Spartan Light', 'quiroh', 'Helvetica Neue', sans-serif;
 }
 
 #root {
@@ -24,7 +24,18 @@ a, button, h1, h2, h3, h4, h5, h6, input, ol, p, textarea, th, ul {
   padding: 0;
   vertical-align: baseline;
   box-sizing: border-box;
+  font-family: 'Spartan Light';
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Spartan SemiBold';
+}
+
+p {
+
+  font-family: 'Spartan Light';
+}
+
 
 div {
   margin: 0;

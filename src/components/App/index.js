@@ -1,5 +1,4 @@
 import React, { Fragment, createRef } from 'react'
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Constants from '../../constants'
 import api from '../../utils/api'
 import { calcInitialScroll, calcScrollToSection } from '../../utils/dbHelper'
@@ -8,7 +7,6 @@ import Toolbar from '../Toolbar'
 import Canvas from '../Canvas'
 import About from '../About'
 import Sidebar from '../Sidebar'
-import OnboardingOne from '../Onboarding/onboarding1'
 import OnboardingTwo from '../Onboarding/onboarding2'
 import OnboardingThree from '../Onboarding/onboarding3'
 import OnboardingFour from '../Onboarding/onboarding4'
@@ -25,7 +23,8 @@ class App extends React.Component {
       selectedSection: {},
       activePin: null,
       activeImageIndexes: {},
-      showOnboarding: true,
+      activeImageIndex: null,
+      showOnboarding: false,
       showOnboardingTwo: false,
       showOnboardingThree: false,
       showOnboardingFour: false,
@@ -36,12 +35,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    api.get(API_URL).then(resp => {
-      this.setState({ db: resp.data })
-      this.setState({ selectedSection: resp.data.sections[0] })
+    const project_id = this.props.match.params.project_id
+    api.get(API_URL + '/' + project_id).then(({ data }) => {
+      this.setState({ db: data })
+      if (!(data.sections && data.sections.length)) {
+        return
+      }
+      this.setState({ selectedSection: data.sections[0] })
+      this.setState({ activeImageIndexes: { ...this.state.activeImageIndexes, [data.sections[0].id]: 0 } })
+      this.setState({ activeImageIndex: 0 })
       this.setState({ loaded: true }, () => {
-        if (this.areaRef.current)
-          this.areaRef.current.scroll(calcInitialScroll(resp.data))
+        if (this.areaRef.current) this.areaRef.current.scroll(calcInitialScroll(data))
       })
     })
   }
@@ -57,9 +61,11 @@ class App extends React.Component {
     this.setState({
       selectedSection,
       activeImageIndexes: { ...activeImageIndexes, [selectedSection.id]: activeImageIndex },
+      activeImageIndex: activeImageIndex,
     })
-    if (isScrollTo && this.areaRef.current)
-      this.areaRef.current.scroll(calcScrollToSection(selectedSection.canvas, zoom))
+    if (isScrollTo && this.areaRef.current) {
+      this.areaRef.current.scroll(calcScrollToSection(selectedSection, zoom))
+    }
   }
 
   onChangeActiveImageIndex = ev => {
@@ -73,6 +79,7 @@ class App extends React.Component {
     const {
       db,
       activeImageIndexes,
+      activeImageIndex,
       showOnboarding,
       showOnboardingTwo,
       showOnboardingThree,
@@ -89,11 +96,11 @@ class App extends React.Component {
       <>
         {this.state.loaded && (
           <Fragment>
-            {showOnboarding && (
-              <OnboardingOne
-                onClose={() => this.setState({ showOnboarding: false })}
+            {showOnboardingFive && (
+              <OnboardingFive
+                onClose={() => this.setState({ showOnboardingFive: false })}
                 onNext={() => this.setState({ showOnboardingTwo: true })}
-              ></OnboardingOne>
+              ></OnboardingFive>
             )}
             {showOnboardingTwo && (
               <OnboardingTwo
@@ -130,12 +137,12 @@ class App extends React.Component {
                 onNext={() => this.setState({ showOnboardingFive: true })}
               />
             )}
-            {showOnboardingFive && (
+            {/* {showOnboardingFive && (
               <OnboardingFive
                 onClose={() => this.setState({ showOnboardingFive: false })}
                 onNext={() => this.setState({ showOnboardingFive: false })}
               />
-            )}
+            )} */}
             {showOnboarding || showOnboardingThree || showOnboardingFive || showOnboardingTwo ? (
               <Overlay />
             ) : showOnboardingFour ? (
@@ -144,7 +151,7 @@ class App extends React.Component {
             <Toolbar
               activeSection={selectedSection}
               activeImageIndex={activeImageIndexes[selectedSection.id]}
-              onShowOnboarding={() => this.setState({ showOnboarding: true })}
+              onShowOnboarding={() => this.setState({ showOnboardingFive: true })}
               onShowAbout={() => this.setState({ showAbout: true })}
               onChangeTimeline={this.onChangeActiveImageIndex}
               showOnboardingTwo={this.state.showOnboardingTwo}
@@ -157,9 +164,12 @@ class App extends React.Component {
                 activeImageIndexes={activeImageIndexes}
                 onPinSelect={activePin => this.setState({ activePin })}
                 showOnboardingFive={this.state.showOnboardingFive}
+                showOnboardingTwo={this.state.showOnboardingTwo}
+                activeSection={selectedSection}
+                activeImageIndex={activeImageIndex}
+                onChangeTimeline={this.onChangeActiveImageIndex}
               />
               {showAbout && <About onClose={() => this.setState({ showAbout: false })} />}
-
               {activePin && <Sidebar pin={activePin} onClose={() => this.setState({ activePin: null })} />}
             </MainArea>
           </Fragment>

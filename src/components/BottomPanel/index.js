@@ -10,9 +10,9 @@ const BottomPanel = ({ items, onSelect, selectedId }) => {
       <InnerWrapper active={active}>
         <Fragment>
           <PreviewArea>
-            {items.map(({ url, id }) => (
+            {items.map(({ img, id }) => (
               <Thumb
-                src={url}
+                src={img !== undefined ? img.url : ''}
                 key={id}
                 onClick={() => onSelect(id)}
                 selected={selectedId === id}

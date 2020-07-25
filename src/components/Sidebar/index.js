@@ -6,9 +6,10 @@ import close from '../../assets/close.svg'
 import cart from '../../assets/shopping-cart.svg'
 
 const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
-  <Wrapper style={{zIndex: `${zIndex}`}}>
+  console.log(pin),
+  <Wrapper style={{ zIndex: `${zIndex}` }}>
     {pin.imageUrl ? (
-      <Image src={api.getImageUrl(pin.imageUrl) || { imgSrc }} alt={pin.headline} />
+      <Image src={pin.image_url || { imgSrc }} alt={pin.headline} />
     ) : (
       <Image src={imgSrc} alt={pin.headline} />
     )}
@@ -21,9 +22,9 @@ const Sidebar = ({ pin, onClose, imgSrc, zIndex }) => (
           <Heading>{pin.headline || 'No headline'}</Heading>
           <Medium>{pin.medium || 'No medium'}</Medium>
         </div>
-        <CartZone href={pin.link}>
+        {/* <CartZone href={pin.link}>
           <img src={cart} alt={pin.link || 'No link provided'} width={25} />
-        </CartZone>
+        </CartZone> */}
       </TopZone>
       <Text>{pin.description}</Text>
     </TextZone>

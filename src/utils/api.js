@@ -1,5 +1,4 @@
 import axios from 'axios'
-// const apiUrl = process.env.REACT_APP_API_URL || 'https://anth-api.herokuapp.com';
 const API_VERSION = '/api/v1'
 const apiUrl = `${process.env.REACT_APP_API_URL || 'https://api.paint.garden'}${API_VERSION}`
 

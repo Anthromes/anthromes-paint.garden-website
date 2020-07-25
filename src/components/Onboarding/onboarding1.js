@@ -7,12 +7,12 @@ const OnboardingOne = ({ onClose, onNext }) => {
   return (
     <AbstractCard
       imgSrc={LogoSrc}
-      title="Hello"
-      body="Welcome to Paint.garden an experimental tool to share and explore creativity. Take a tour to see the
-      website features."
+      title="Hello, there."
+      body="Paint.garden records your creative process and, if you want, lets you share it. Store
+      your work and tells its story."
       onClose={onClose}
       onNext={onNext}
-      button="Next"
+      button="Let’s take a quick tour "
       top="25%"
       left="25%"
     />

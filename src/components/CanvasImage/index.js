@@ -1,26 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Image } from '../Common/Styled'
 import { calcSizeWithZoom } from '../../utils/calcZoom'
 
 const CanvasImage = ({ item, onSelect, selectedItemId, zoomLevel }) => {
   const height = calcSizeWithZoom(item.height, zoomLevel)
   const width = calcSizeWithZoom(item.width, zoomLevel)
-  const x = calcSizeWithZoom(item.x, zoomLevel)
-  const y = calcSizeWithZoom(item.y, zoomLevel)
+  const x = calcSizeWithZoom(item.posx, zoomLevel)
+  const y = calcSizeWithZoom(item.posy, zoomLevel)
 
   return (
-    <Image
-      src={item.url}
-      isSelected={selectedItemId === item.id}
+    <img
+      style={{
+        position: 'absolute',
+        top: y,
+        left: x,
+        border: selectedItemId === item.id ? '2px solid #00abdc' : '',
+        boxSizing: 'border-box',
+        zIndex: selectedItemId === item.id ? '20' : '1',
+      }}
+      src={item.img !== undefined ? item.img.url : ''}
+      selected={selectedItemId === item.id}
       alt={''}
-      top={y}
-      left={x}
       width={width}
       height={height}
       onClick={ev => {
         ev.stopPropagation()
-        onSelect(item.id)
+        onSelect(item.id, true, zoomLevel)
       }}
     />
   )

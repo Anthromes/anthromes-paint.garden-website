@@ -21,9 +21,22 @@ export const ContentWrapper = styled.div`
   padding: 1.7rem;
   position: relative;
   margin: 2em;
-  
+  font-size: 18px;
+
   @media (min-width: 960px) {
-    max-width: 500px;
+    max-width: 800px;
+  }
+
+
+  @media (max-width: 960px) {
+    padding: 1rem;
+    font-size: 12px;
+    margin: 1em;
+  }
+
+
+  @media (max-width: 330px) {
+    font-size: 10px;
   }
 `
 
@@ -32,4 +45,14 @@ export const CloseItem = styled.div`
   right: 1.7rem;
   top: 1.7rem;
   cursor: pointer;
+`
+
+export const LinkTest = styled.span `
+  color: #01abdd;
+  text-decoration: none;
+`
+
+export const BoldText = styled.span `
+  color: #000;
+  font-weight:500;
 `

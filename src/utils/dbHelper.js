@@ -5,13 +5,15 @@ export const getCanvasItems = (db, activeImageIndexes) => {
   const images = db.images
   return db.sections
     .filter(s => Boolean(s.canvas))
-    .map(({ id, imageIds, width, height }) => ({
+    .map(({ id, imageIds, width, height, posx, posy }) => ({
       id,
-      url: images.find(
-        im => im.id === imageIds[activeImageIndexes[id] !== undefined ? activeImageIndexes[id] : imageIds.length - 1],
-      ).url,
+      img: images.find(
+        im => im.id === imageIds[activeImageIndexes[id] !== undefined ? activeImageIndexes[id] : imageIds.length - 1], 
+      ),
       width,
       height,
+      posx,
+      posy
     }))
 }
 
@@ -26,7 +28,7 @@ export const calcInitialScroll = db => {
 }
 
 export const calcScrollToSection = (canvas, zoom) => {
-  return { left: calcSizeWithZoom(canvas.x, zoom), top: calcSizeWithZoom(canvas.y, zoom), behavior: 'smooth' }
+  return { left: calcSizeWithZoom(canvas.posx, zoom), top: calcSizeWithZoom(canvas.posy, zoom), behavior: 'smooth' }
 }
 
 export const calcCanvasSize = (sections, zoom) => {

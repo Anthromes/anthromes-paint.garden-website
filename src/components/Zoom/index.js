@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Wrapper, Buttons, ButtonItem, Button, Value, Divider } from './Styled'
 
 const Zoom = ({ zoomIn, zoomOut, value, showOnboardingFive }) => (
-  <Wrapper onClick={ev => ev.stopPropagation()} style={{ zIndex: `${showOnboardingFive ? 99999 : 1}` }}>
+  <Wrapper onClick={ev => ev.stopPropagation()} style={{ zIndex: `${showOnboardingFive ? 99999 : 100}` }}>
     <Buttons>
       <Button onClick={zoomIn} top>
         <ButtonItem top />

@@ -5,6 +5,7 @@ export const PinWrapper = styled.div`
   top: ${props => props.y}px;
   left: ${props => props.x}px;
   cursor: pointer;
+  z-index: 99;
 `
 
 export const PinViewWrapper = styled.div`

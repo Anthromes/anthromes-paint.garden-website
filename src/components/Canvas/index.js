@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CanvasImage from '../CanvasImage'
+import TimelineWrapperNew from '../TimelineWrapperNew'
 import Zoom from '../Zoom'
 import BottomPanel from '../BottomPanel'
 import Pins from '../Pins'
 import constants from '../../constants'
-import { getCanvasItems, getSectionById, calcCanvasSize } from '../../utils/dbHelper'
+import { getCanvasItems, getSectionById } from '../../utils/dbHelper'
 import { getCurrentZoomPercentage } from '../../utils/calcZoom'
 import { Area } from './Styled'
 
-const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeImageIndexes, showOnboardingFive }) => {
-  const [zoom, setZoom] = useState(0)
+const Canvas = ({
+  db,
+  onSectionSelect,
+  selectedSectionId,
+  onPinSelect,
+  activeImageIndexes,
+  showOnboardingFive,
+  showOnboardingTwo,
+  activeSection = {},
+  activeImageIndex,
+  onChangeTimeline,
+}) => {
+  const [zoom, setZoom] = useState(constants.DEFAULT_ZOOM_LEVEL)
   if (!db) return <div>Loading</div>
 
   const items = getCanvasItems(db, activeImageIndexes)
@@ -18,12 +30,12 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
 
   const onZoomOut = () => zoom > -constants.MAX_ZOOM_LEVEL && setZoom(zoom - 1)
   const onZoomIn = () => zoom < constants.MAX_ZOOM_LEVEL && setZoom(zoom + 1)
-  const onSectionSelectFromCanvas = sectionId => onSectionSelect(getSectionById(db, sectionId))
+  const onSectionSelectFromCanvas = (sectionId, isScrollTo, zoom) =>
+    onSectionSelect(getSectionById(db, sectionId), isScrollTo, zoom)
   const onSectionSelectFromPanel = sectionId => onSectionSelect(getSectionById(db, sectionId), true, zoom)
-  const canvasSize = calcCanvasSize(db.sections, zoom)
 
   return (
-    <Area onClick={() => onSectionSelect(null)} width={canvasSize.width} height={canvasSize.height}>
+    <Area onClick={() => onSectionSelect(null)}>
       {items.map(item => (
         <CanvasImage
           item={item}
@@ -33,13 +45,27 @@ const Canvas = ({ db, onSectionSelect, selectedSectionId, onPinSelect, activeIma
           zoomLevel={zoom}
         />
       ))}
-      <Pins pins={db.pins} zoomLevel={zoom} onPinSelect={onPinSelect} />
+      <Pins pins={db.annotations} zoomLevel={zoom} onPinSelect={onPinSelect} />
       <Zoom
         zoomIn={onZoomIn}
         zoomOut={onZoomOut}
         value={getCurrentZoomPercentage(zoom)}
         showOnboardingFive={showOnboardingFive}
       />
+      <TimelineWrapperNew
+        activeSection={activeSection}
+        activeImageIndex={activeImageIndex}
+        onChangeTimeline={onChangeTimeline}
+        activeImageIndexes={activeImageIndexes}
+        showOnboardingTwo={showOnboardingTwo}
+      />
+      {/* <TimelineWrapper
+        activeSection={activeSection}
+        activeImageIndex={activeImageIndex}
+        onChangeTimeline={onChangeTimeline}
+        activeImageIndexes = {activeImageIndexes}
+        showOnboardingTwo={showOnboardingTwo}
+      /> */}
       <BottomPanel items={items} onSelect={onSectionSelectFromPanel} selectedId={selectedSectionId} />
     </Area>
   )
@@ -52,6 +78,9 @@ Canvas.propTypes = {
   onSectionSelect: PropTypes.func,
   onPinSelect: PropTypes.func,
   showOnboardingFive: PropTypes.bool,
+  activeSection: PropTypes.object.isRequired,
+  activeImageIndex: PropTypes.number,
+  onChangeTimeline: PropTypes.func,
 }
 
 export default Canvas

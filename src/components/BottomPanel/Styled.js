@@ -6,13 +6,13 @@ export const Wrapper = styled.div`
   bottom: 0;
   height: 65px;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
+  overflow: scroll;
 `
 
 export const InnerWrapper = styled.div`
   position: relative;
   height: 65px;
-  padding: 0 30px;
   display: flex;
   align-items: center;
   background: white;
@@ -34,7 +34,8 @@ export const IconClose = styled.img`
 export const PreviewArea = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  padding-left: 10px;
+  margin: 0 auto;
 `
 
 export const Thumb = styled.img`
