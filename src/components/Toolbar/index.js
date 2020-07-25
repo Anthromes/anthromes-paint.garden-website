@@ -14,14 +14,14 @@ const Toolbar = ({ onShowOnboarding, onShowAbout }) => (
       <LinksArea>
         <LinkText onClick={onShowOnboarding}>How to use</LinkText>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText><a href = "//www.admin.paint.garden/register">Join</a></LinkText>
+        <LinkText><a href = "//admin.paint.garden/register">Join</a></LinkText>
       </LinksArea>
     </DesktopView>
     <MobileView>
       <MenuButton>
         <LinkText onClick={onShowOnboarding}>How to use</LinkText>
         <LinkText onClick={onShowAbout}>About</LinkText>
-        <LinkText><a href = "//www.admin.paint.garden/register">Join</a></LinkText>
+        <LinkText><a href = "//admin.paint.garden/register">Join</a></LinkText>
       </MenuButton>
     </MobileView>
   </Wrapper>
